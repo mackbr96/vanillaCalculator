@@ -3,10 +3,11 @@
 #include <ctype.h>
 #include <assert.h>
 
+#include "tree.h"
+
 #define EOS 256
 #define NUM 257
 
-typedef struct tree tree;
 
 int current_token;
 int current_attribute;
@@ -25,79 +26,17 @@ void printTree(tree *t);
 
 
 
-struct tree {
-	tree *leftNode;
-	tree *rightNode;
-	char middle;
-	int attribute;
-};
-
-tree *mktree(int opp, tree *old, tree *new) {
-	tree *t;
-	t = malloc(sizeof(struct tree));
-	switch(opp) {
-		case('+'):	
-			t -> middle = '+';
-			t -> leftNode = old;
-			t -> rightNode = new;
-			return t;
-		case('*'):
-			t -> middle = '*';
-			t -> leftNode = old;
-			t -> rightNode = new;
-			return t;
-		case('-'):
-			t -> middle = '-';
-			t -> leftNode = old;
-			t -> rightNode = new;
-			return t;
-		case('/'):
-			t -> middle = '/';
-			t -> leftNode = old;
-			t -> rightNode = new;
-			return t;
-		case (NUM):
-			t->leftNode = old;
-			t->rightNode = new;
-			return t;
-		default:
-			fprintf(stderr, "UNKOWN OPPERATION IN THE MKTREE QUITING %d\n", opp);
-			exit(1);
-	}
-}
-
-void printTree(tree *t) {
+/*void printTree(tree *t) {
 	if(t->leftNode != NULL) {
-		fprintf(stderr, "%d\n", t->leftNode->attribute);
+		//fprintf(stderr, "%d\n", t->leftNode->attribute);
 		printTree(t->leftNode);
 	}
 	if(t->rightNode != NULL) {
-		fprintf(stderr, "%d\n", t->rightNode->attribute);
+		//fprintf(stderr, "%d\n", t->rightNode->attribute);
 		printTree(t->rightNode);
 	}
 	
-}
-double addTree(tree *t) {
-	double value;
-	switch(t->middle) {
-		case('+'):
-			value = addTree(t->leftNode) + addTree(t->rightNode);
-			break;
-		case('-'):
-			value = addTree(t->leftNode) - addTree(t->rightNode);
-			break;
-		case('*'):
-			value = addTree(t->leftNode) * addTree(t->rightNode);
-			break;
-		case('/'):
-			value = addTree(t->leftNode) / addTree(t->rightNode);
-			break;
-		default:
-			value = t->attribute;
-	}
-	return value;
-}
-
+}*/
 //Tokenizer/scanner
 int get_token() {
 	int c;
