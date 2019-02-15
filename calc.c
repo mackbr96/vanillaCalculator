@@ -12,9 +12,9 @@
 int current_token;
 int current_attribute;
 
-int get_token();
-
 double addTree(tree *t);
+
+int get_token();
 
 tree *term();
 tree *factor();
@@ -25,18 +25,6 @@ void match(int);
 void printTree(tree *t);
 
 
-
-/*void printTree(tree *t) {
-	if(t->leftNode != NULL) {
-		//fprintf(stderr, "%d\n", t->leftNode->attribute);
-		printTree(t->leftNode);
-	}
-	if(t->rightNode != NULL) {
-		//fprintf(stderr, "%d\n", t->rightNode->attribute);
-		printTree(t->rightNode);
-	}
-	
-}*/
 //Tokenizer/scanner
 int get_token() {
 	int c;
